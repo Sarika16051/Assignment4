@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ToDoList</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="Submit">Submit</string>
+    <string name="detail">Detail : </string>
+    <string name="time">Time : </string>
+    <string name="Add_A_New_Task">Add A New Task</string>
+    <string name="Enter_title">Enter Title</string>
+    <string name="Enter_detail">Enter Detail</string>
+    <string name="Enter_time">Enter time</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add_task">AddTask</string>
+    <string name="title_activity_display_task_details">DisplayTaskDetails</string>
+</resources>

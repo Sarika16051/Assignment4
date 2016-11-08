@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="MainPage" parent="Theme.AppCompat.Light">
+        <item name="android:background">#EC407A</item>
+    </style>
+
+    <style name="Task" parent="Theme.AppCompat.Light">
+        <item name="android:background">#CDDC39</item>
+    </style>
+
+    <style name="AddItem" parent="Theme.AppCompat.Light">
+        <item name="android:background">#F06292</item>
+    </style>
+
+</resources>
