@@ -18,6 +18,7 @@
             android:id="@+id/toolbarAddTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#9C27B0"
             android:minHeight="?attr/actionBarSize">
 
             <TextView
@@ -81,6 +82,7 @@
 
             <Button
                 android:id="@+id/addToDo"
+                style="@style/SubmitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="120dp"

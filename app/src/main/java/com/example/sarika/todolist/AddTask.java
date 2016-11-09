@@ -29,6 +29,7 @@ public class AddTask extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarAddTask);
         setSupportActionBar(toolbar);
 
+        //For enabliing Hierarchical Navigation
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -36,8 +37,10 @@ public class AddTask extends ActionBarActivity {
         detailText = (EditText) findViewById(R.id.detailText);
         addToDo = (Button) findViewById(R.id.addToDo);
 
+        //Creating database if not exist otherwise opening the existing database
         createDatabase();
 
+        //When submit button is clicked, a new Task is added to the database
         addToDo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +56,7 @@ public class AddTask extends ActionBarActivity {
                 if (title.equalsIgnoreCase("") || detail.equalsIgnoreCase("") || time.equalsIgnoreCase("")) {
                     error();
                 } else {
+                    //Inserting values to database
                     String query = "INSERT INTO todolist VALUES('" + title + "','" + detail + "','" + time + "');";
                     db.execSQL(query);
                     displaySuccess();
@@ -86,10 +90,12 @@ public class AddTask extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //method to toast an error message
     public void error() {
         Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
     }
 
+    //method to toast successful addition of data to database
     public void displaySuccess() {
         Toast.makeText(this, "Data added successfully", Toast.LENGTH_SHORT).show();
     }

@@ -17,4 +17,8 @@
         <item name="android:background">#F06292</item>
     </style>
 
+    <style name="SubmitButton" parent="Theme.AppCompat.Light">
+        <item name="android:background">#BA68C8</item>
+    </style>
+
 </resources>

@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         tAdapter = new ToDoAdapter(todoList);
 
+        //setting recycler view
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -49,9 +50,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(tAdapter);
 
-
+        //Creating database if not exist otherwise opening the existing database
         createDatabase();
 
+        //setting onClickListener to button for adding a new Task
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //action to be performed if item from recycler view is clicked
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -87,12 +90,11 @@ public class MainActivity extends AppCompatActivity {
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, close
-                                // current activity
+                                // if this button is clicked, Delete task
 
                                 ToDo listTitle = todoList.get(location);
 
-                                //retrieving data from database corresponding to given roll number
+                                //retrieving data from database corresponding to title,detail and time of the task to be deleted
                                 Cursor c = db.rawQuery("SELECT * FROM todolist WHERE title='" + listTitle.getTitle() + "' and detail='" + listTitle.getDetail() + "' and time='" + listTitle.getTime() + "'", null);
 
                                 if (c != null && c.getCount() > 0) {
@@ -127,8 +129,11 @@ public class MainActivity extends AppCompatActivity {
         prepareToDoList();
     }
 
+    //Preparing the todoList
     private void prepareToDoList() {
         todoList.clear();
+
+        //Getting Tasks from the database and adding them to the List
         Cursor c = db.rawQuery("SELECT * FROM todolist", null);
         if (c != null && c.getCount() > 0) {
             if (c.moveToFirst()) {
@@ -138,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
                 } while (c.moveToNext());
             }
         }
-
         tAdapter.notifyDataSetChanged();
     }
+
 
     //method to create database or open database if exists
     protected void createDatabase() {
@@ -148,10 +153,12 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("CREATE TABLE IF NOT EXISTS todolist(title VARCHAR,detail VARCHAR,time VARCHAR);");
     }
 
+    //method to display toast when an item from to do list of recycler view is clicked
     public void displayToast(String str) {
         Toast.makeText(this, str + " pressed", Toast.LENGTH_SHORT).show();
     }
 
+    //method to display a toast when task is successfully deleted from Database
     protected void deleteToast() {
         Toast.makeText(this, "Deleted successfully", Toast.LENGTH_SHORT).show();
     }
